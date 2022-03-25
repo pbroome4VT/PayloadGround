@@ -7,8 +7,12 @@
 import serial
 
 def loraReadLine():
-	return lora.readline().decode("UTF-8").strip()[5::]
-
+	string = ""
+	try:
+		string = lora.readline().decode("UTF-8").strip()
+	except Exception as e:
+		print(e)
+	return string
 
 lora = serial.Serial("/dev/ttyUSB0", 115200)
 if not lora.isOpen():
@@ -21,17 +25,26 @@ print("AT+NETWORKID=6: ", loraReadLine())
 lora.write("AT+ADDRESS=2\r\n".encode())
 print("AT+ADDRESS=2: ", loraReadLine())
 
+#assign lora Paramaters
+lora.write("AT+PARAMETER=12,4,1,7\r\n".encode())
+print("AT+PARAMETER=12,4,1,7: ", loraReadLine())
 
 while(1):
-	data = loraReadLine().split(",")
-	if (len(data) == 7):
-		address = data[0]
-		length = data[1]
-		data_lon = data[2]
-		data_lat = data[3]
-		data_alt = data[4]
-		rssi = data[5]
-		snr = data[6]
-		print("address: " + address + "\nlength: " + length + "\nLatitude: " + data_lat + "\nLongitude: "+data_lon +"\nAltitude: " + data_alt + "\nRSSI: " + rssi + "\nSNR: "+snr+"\n")
-		coords_file.write(data_lat+","+data_lon+","+data_alt+"\n")
-		coords_file.flush()
+	try:
+		data = loraReadLine()[5::].split(",")
+		if (len(data) == 7):
+			address = data[0]
+			length = data[1]
+			data_lon = str(float(data[2]))
+			data_lat = str(float(data[3]))
+			data_alt = str(float(data[4]))
+			rssi = data[5]
+			snr = data[6]
+			if(data_lon == "-1" and data_lat == "-1" and data_alt == "-1"):
+				print("no fix")
+			else:
+				print("address: " + address + "\nlength: " + length + "\nLatitude: " + data_lat + "\nLongitude: "+data_lon +"\nAltitude: " + data_alt + "\nRSSI: " + rssi + "\nSNR: "+snr)
+				coords_file.write(data_lat + "," + data_lon +","+data_alt)
+				coords_file.flush()
+	except Exception as e:
+		print(e)

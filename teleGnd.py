@@ -17,8 +17,8 @@ if (childNum == 0):
    while True:
       pass
 elif (childNum == 1):
-   print("calling gps.py")
+   print("calling reciever.py")
    os.execlp("python3", "python3", "reciever.py")
 elif(childNum == 2):
-   print("calling transmitter.py")
+   print("calling writer.py")
    os.execlp("python3", "python3", "writer.py")
