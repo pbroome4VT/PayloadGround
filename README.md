@@ -44,13 +44,15 @@ Install the payload software by entering
 > pip3 install -r requirements.txt
 
 
-## Installation Instructions Windows (command line)
+## Installation Instructions Windows
 ### Prerequisites
 Some software may need to be installed or added to the windows PATH environment variable. The following must be installed on the system to proceed.
 
-    python3  should also be installed by default
-    git most likely not installed.
+    python3  is probably installed by default
+    git most likely not installed. I reccomend installing github desktop
     pip3 must be installed
+
+    Download each of the above and add them to you PATH variable
  
  
 ### Payload Software
@@ -75,8 +77,8 @@ Install the payload software by entering
 
 
 ## Usage
-After intalling, the program can be run by executing the corresponding payload.sh bash file.
+After intalling, the program can be run by executing the corresponding payload script file.
 
 On linux that means, run linuxPayload.sh
 
-on windows, that means, run windowsPayload.sh
+on windows, that means, run windowsPayload.bat

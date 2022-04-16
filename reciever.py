@@ -11,7 +11,7 @@ import serial
 #MUST CHANGE DEPENDING ON WINDOWS/MAC
 #LINUX will be "/dev/ttyUSB<x>" which is most likely "/dev/ttyUSB0"
 #WINDOWS will be "COM<x>" where you will have to determine which COM port. For example, "COM3" if it connected to com port 3.  
-SERIAL_PORT = "/dev/ttyUSB0"
+SERIAL_PORT = "COM6"
 
 
 def loraReadLine():
