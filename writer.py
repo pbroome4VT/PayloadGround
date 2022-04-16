@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import serial
 import os											#for os.path
 import time
@@ -7,6 +9,9 @@ import xml.etree.ElementTree as ET			#for parsing the xml files (kml files are x
 FILE_NAME = "trajectory.kml"			#output kml file
 TEMPLATE = "kmlTemplate.kml"			#kml template file (contains formatting but not coord data)
 
+
+
+print("Writer.py called")
 #step 1: open lora serial connection to read recieved gps data
 #lora = serial.Serial("/dev/ttyUSB0", 115200)
 

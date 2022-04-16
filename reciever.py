@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 #Author: Paul Broome
 #Data: 3/13/22
 #Description: Recieves data from a lora tranciever connected to computer serial port.
@@ -14,6 +16,8 @@ def loraReadLine():
 		print(e)
 	return string
 
+
+print("reciever.py called")
 lora = serial.Serial("/dev/ttyUSB0", 115200)
 if not lora.isOpen():
 	print("lora failed to open")
@@ -35,16 +39,16 @@ while(1):
 		if (len(data) == 7):
 			address = data[0]
 			length = data[1]
-			data_lon = str(float(data[2]))
-			data_lat = str(float(data[3]))
+			data_lat = str(float(data[2]))
+			data_lon = str(float(data[3]))
 			data_alt = str(float(data[4]))
 			rssi = data[5]
 			snr = data[6]
-			if(data_lon == "-1" and data_lat == "-1" and data_alt == "-1"):
+			if(float(data_lat) == -1 or float(data_lon) == -1 or float(data_alt) == -1):
 				print("no fix")
 			else:
 				print("address: " + address + "\nlength: " + length + "\nLatitude: " + data_lat + "\nLongitude: "+data_lon +"\nAltitude: " + data_alt + "\nRSSI: " + rssi + "\nSNR: "+snr)
-				coords_file.write(data_lat + "," + data_lon +","+data_alt)
+				coords_file.write(data_lat + "," + data_lon +","+data_alt+"\n")
 				coords_file.flush()
 	except Exception as e:
 		print(e)
