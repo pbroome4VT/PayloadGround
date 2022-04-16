@@ -8,6 +8,12 @@
 #	It's assumed that the tranciever is connected to serial port /dev/ttyUSB0 (THIS MAY NOT BE THE CASE!)
 import serial
 
+#MUST CHANGE DEPENDING ON WINDOWS/MAC
+#LINUX will be "/dev/ttyUSB<x>" which is most likely "/dev/ttyUSB0"
+#WINDOWS will be "COM<x>" where you will have to determine which COM port. For example, "COM3" if it connected to com port 3.  
+SERIAL_PORT = "/dev/ttyUSB0"
+
+
 def loraReadLine():
 	string = ""
 	try:
@@ -18,7 +24,7 @@ def loraReadLine():
 
 
 print("reciever.py called")
-lora = serial.Serial("/dev/ttyUSB0", 115200)
+lora = serial.Serial(SERIAL_PORT, 115200)
 if not lora.isOpen():
 	print("lora failed to open")
 coords_file = open("coords.txt", "w")
