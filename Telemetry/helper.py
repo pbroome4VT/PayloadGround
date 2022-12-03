@@ -15,10 +15,8 @@ def initialize_telemetry(port):
         tranceiver.write(b"ATI\r")
         time.sleep(0.1)
         tranceiver.write(b"AT&F\r") #reset to factor default
-        time.sleep(0.1)
+        time.sleep(.1)
         #tranceiver.write(b"ATS3=111\r") #set register 3 (network id) to 111
-        time.sleep(0.1)
-        #tranceiver.write(b"ATS15=1\r") #set register 15(node id) to 1
         time.sleep(0.1)
         #tranceiver.write(b"ATS9=916,000\r") # set register9 (max freq) to 9.16 Mhz
         time.sleep(0.1)
@@ -50,6 +48,7 @@ def telemetry():
         if(len(data)>0):
             print(data)
             return data
+
     except:
         pass
     return None
