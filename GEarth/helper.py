@@ -58,7 +58,7 @@ def gearth(data):
         data = data.split(" ")
         lat = data[0]					#redundant conversion to make sure no transmission error
         lon = data[1]
-        alt = str(float(data[2])+300.0)
+        alt = str(float(data[2]))
         kmlCoordLine = lon + "," + lat + "," + alt + "\n"
         global coordTag
         global tree
