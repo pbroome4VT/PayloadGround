@@ -23,7 +23,7 @@ def fsm():
 def run():
     print("Run called")
     setup()
-    telemetry.initialize("COM5")
+    telemetry.initialize("COM3")
     gearth.initialize()
     while 1:
         fsm()

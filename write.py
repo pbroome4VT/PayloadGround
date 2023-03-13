@@ -11,6 +11,7 @@ def main():
             data = file.readline()
             while(data != ""):
                 gearth.gearth(data)
+                print(data)
                 data = file.readline()
             print("finished writing")
         else:

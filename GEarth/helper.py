@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import os
+import re
 from GEarth import constants as c
 
 #global variables
@@ -39,7 +40,7 @@ def initialize_gearth():
 
 def is_coordinate(data):
     try:
-        data = data.strip().split(" ")
+        data = re.split(" |," , data.strip())
         if(len(data) == 3):
             if(is_float(data[0]) and is_float(data[1]) and is_float(data[2])):
                 if(abs(float(data[0])) < 90 and abs(float(data[1])) < 180):
@@ -55,7 +56,7 @@ def gearth(data):
         data = data.strip() + "\n"
         coordsFile.write(data)
 
-        data = data.split(" ")
+        data = re.split(" |,", data)
         lat = data[0]					#redundant conversion to make sure no transmission error
         lon = data[1]
         alt = str(float(data[2]))
@@ -64,5 +65,7 @@ def gearth(data):
         global tree
         coordTag.text = coordTag.text + kmlCoordLine
         tree.write(c.TRAJECTORY_KML)
-
+    else:
+        pass
+        print("not coordinate: " + data)
         
