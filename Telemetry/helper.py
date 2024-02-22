@@ -11,7 +11,8 @@ def read_modem():
     try:
         data = data.decode("utf-8").strip()
         if(len(data)>0):
-            print(data)
+            pass
+            #print(data)
     except:
         data = ""
     return data
@@ -70,7 +71,7 @@ def initialize_telemetry(port):
         time.sleep(0.1)
         tranceiver.write(b"ATS4=30\r") #set register 4(tx power) to 20db
         time.sleep(0.1)
-        tranceiver.write(b"ATS2=2\r")
+        tranceiver.write(b"ATS2=64\r")#set air data rate to 64(not sure exactly what this means but has to do with bytes per second i think)
         time.sleep(0.1)
         tranceiver.write(b"AT&W\r") #write parameters
         time.sleep(0.1)

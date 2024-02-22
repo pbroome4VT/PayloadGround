@@ -7,3 +7,6 @@ def initialize():
 
 def gearth(data):
     h.gearth(data)
+
+def is_coordinate(data):
+    return h.is_coordinate(data)
